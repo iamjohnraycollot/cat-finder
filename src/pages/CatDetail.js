@@ -20,7 +20,6 @@ const CatDetail = () => {
     api.get(url)
     .then(res => {
       setCatData(res.data);
-      console.log()
     })
     .catch(err => {
       console.log(err);

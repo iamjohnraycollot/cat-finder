@@ -40,8 +40,6 @@ function Form() {
     })
     .then(res => {
       setCats(res.data);
-      console.log('cats');
-      console.log(res.data);
     })
     .catch(err => {
       console.log(err);
