@@ -3,10 +3,10 @@ import React, {useState, createContext} from 'react';
 export const CatContext = createContext();
 
 export const CatProvider = props => {
-  const [cats, setCats] = useState([]);
+  const [catSelected, setCatSelected] = useState([]);
   
   return(
-    <CatContext.Provider value={[cats, setCats]}>
+    <CatContext.Provider value={[catSelected, setCatSelected]}>
       {props.children}
     </CatContext.Provider>
   );

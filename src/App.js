@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import Form from './components/Form';
-import CatList from './components/CatList'
 import {CatProvider} from './components/CatContext'
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
@@ -18,12 +17,11 @@ function App() {
             <Route path='/' exact>
               <h1>Cat Browser</h1>
               <Row>
-                <Col md={6}>
+                <Col>
                   <Form />
                 </Col>
               </Row>
-              
-              <CatList />
+
             </Route> 
             <Route path='/cat-details'>
               <CatDetail />

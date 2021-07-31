@@ -3,9 +3,8 @@ import {CatContext} from './CatContext';
 import Cat from './Cat'
 import { Row } from 'react-bootstrap';
 
-const CatList = () => {
+const CatList = ({cats}) => {
 
-  const [cats, setCats] = useContext(CatContext);
 
   return (
     <Row>

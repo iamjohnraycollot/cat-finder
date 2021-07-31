@@ -1,9 +1,9 @@
 import React, {useState, useContext, useEffect} from 'react';
 import axios from 'axios'
-import {CatContext} from './CatContext';
 import { Button } from 'react-bootstrap';
 import { Row } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
+import CatList from './CatList'
 
 const api = axios.create({
   baseURL: 'https://api.thecatapi.com/v1/',
@@ -15,13 +15,12 @@ function Form() {
   const [page, setPage] = useState(1);
   const [breeds, setBreeds] = useState([]);
   const [breedSelected, setBreedSelected] = useState('');
-  const [cats, setCats] = useContext(CatContext);
+  const [cats, setCats] = useState([]);
 
   useEffect( ()=>{
     api.get('breeds')
     .then(res => {
       setBreeds(res.data);
-      console.log(res.data)
     })
     .catch(err => {
       console.log(err);
@@ -32,7 +31,7 @@ function Form() {
     setPage(1); //always set page to 1 when selecting new breed
     setBreedSelected(e.target.value);
 
-    api.get('images/search',{
+    api.get('images/search/',{
       params: {
         page: {page},
         limit: 10,
@@ -41,6 +40,8 @@ function Form() {
     })
     .then(res => {
       setCats(res.data);
+      console.log('cats');
+      console.log(res.data);
     })
     .catch(err => {
       console.log(err);
@@ -66,8 +67,8 @@ function Form() {
 
 
   return (
-    <Row>
-      <Col>
+    <div>
+
         <Row>
           <Col md={6}>
           <select className="form-control" onChange={updateBreedSelected}>
@@ -81,13 +82,15 @@ function Form() {
           </Col>
         </Row>
 
+        <CatList cats={cats}/> 
+
         <Row>
           <Col md={4}>
             <Button variant="success" onClick={loadMoreCats}>Load More</Button>
           </Col>
         </Row>
-      </Col>
-    </Row>
+
+    </div>
 
     
   );
